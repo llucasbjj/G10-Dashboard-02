@@ -217,7 +217,22 @@ with col2:
 
 st.divider()
 
+import io
+
 # --- TABELA INTERATIVA ---
 st.subheader("📑 Relação Detalhada de Postos")
 # As colunas disponíveis são: 'Posto Abastecido', 'CNPJ', 'Contato', 'Municipio', 'UF', 'Produto', 'Abastecimentos'
-st.dataframe(df[['Posto Abastecido', 'Municipio', 'UF', 'Produto', 'Abastecimentos', 'CNPJ', 'Contato']], use_container_width=True)
+df_show = df[['Posto Abastecido', 'Municipio', 'UF', 'Produto', 'Abastecimentos', 'CNPJ', 'Contato']]
+st.dataframe(df_show, use_container_width=True)
+
+# Gera o arquivo Excel em memória para download
+buffer = io.BytesIO()
+with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
+    df_show.to_excel(writer, index=False, sheet_name='Postos')
+
+st.download_button(
+    label="📥 Baixar dados em Excel (.xlsx)",
+    data=buffer.getvalue(),
+    file_name="relacao_postos.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
