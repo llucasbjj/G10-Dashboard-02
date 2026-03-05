@@ -17,8 +17,8 @@ with col_logo:
     if os.path.exists(logo_path):
         st.image(logo_path, width=150)
 with col_title:
-    st.title("Hub de Abastecimento G10")
-    st.markdown("Monitoramento georreferenciado e fluxo de paradas da frota.")
+    st.title("DashBoard de Abastecimento G10")
+    st.markdown("Monitoramento georreferenciado e fluxo da frota.")
 
 # --- CARREGAR DADOS ---
 @st.cache_data
@@ -109,7 +109,7 @@ def get_route(coords):
 
 # --- MAPA DE CALOR ---
 st.subheader("🗺️ Mapa de Densidade de Abastecimento e Rotas")
-st.markdown("O mapa exibe a localização dos postos e a intensidade da cor indica a quantidade de abastecimentos na região. A linha azul simula a rota otimizada entre eles pelas rodovias principais.")
+st.markdown("O mapa exibe a localização dos postos e a intensidade da cor indica a quantidade de abastecimentos na região.")
 
 if not df_mapa.empty:
     # Verifica qual métrica usar para o tamanho
@@ -236,3 +236,4 @@ st.download_button(
     file_name="relacao_postos.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
+
