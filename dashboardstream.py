@@ -143,7 +143,7 @@ if not df_mapa.empty:
         lon=df_mapa['Lon'],
         z=df_mapa['Abastecimentos'], # A quantidade define o "calor" (intensidade)
         radius=45, # Aumentou o halo para brilho beem maior
-        colorscale="Inferno", # cores ressaltam no fundo escuro
+        colorscale="Turbo", # cores ressaltam no fundo escuro
         hovertext=df_mapa['Posto Abastecido'],
         hoverinfo="text",
         showscale=False
@@ -236,4 +236,5 @@ st.download_button(
     file_name="relacao_postos.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
+
 
